@@ -82,10 +82,71 @@ const AddProduct = () => {
           </div>
         </div>
 
-        {/* Inputs */}
-        {/* ... os inputs seguem iguais como já estão no seu código */}
-        {/* ... */}
+        {/* Product Name */}
+        <div>
+          <p className="text-base font-medium">Product Name</p>
+          <input
+            type="text"
+            className="p-2 border rounded w-full mt-1"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+        </div>
 
+        {/* Product Description */}
+        <div>
+          <p className="text-base font-medium">Product Description</p>
+          <textarea
+            rows={4}
+            className="p-2 border rounded w-full mt-1"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            required
+          ></textarea>
+        </div>
+
+        {/* Category */}
+        <div>
+          <p className="text-base font-medium">Category</p>
+          <select
+            className="p-2 border rounded w-full mt-1"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+          >
+            <option value="Earphone">Earphone</option>
+            <option value="Mobile">Mobile</option>
+            <option value="Laptop">Laptop</option>
+            <option value="Tablet">Tablet</option>
+            <option value="Smartwatch">Smartwatch</option>
+          </select>
+        </div>
+
+        {/* Price */}
+        <div>
+          <p className="text-base font-medium">Price (R$)</p>
+          <input
+            type="number"
+            className="p-2 border rounded w-full mt-1"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+            required
+          />
+        </div>
+
+        {/* Offer Price */}
+        <div>
+          <p className="text-base font-medium">Offer Price (R$)</p>
+          <input
+            type="number"
+            className="p-2 border rounded w-full mt-1"
+            value={offerPrice}
+            onChange={(e) => setOfferPrice(e.target.value)}
+            required
+          />
+        </div>
+
+        {/* Submit Button */}
         <button type="submit" className="px-8 py-2.5 bg-orange-600 text-white font-medium rounded">
           ADD
         </button>
