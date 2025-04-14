@@ -12,6 +12,7 @@
     "@clerk/clerk-sdk-node": "^5.1.6",
     "@clerk/nextjs": "^6.13.0",
     "axios": "^1.8.4",
+    "cloudinary": "^2.6.0",
     "inngest": "^3.34.2",
     "mongoose": "^8.13.1",
     "next": "^15.2.4",
