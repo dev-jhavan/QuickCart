@@ -9,7 +9,7 @@ export async function GET(request) {
     try {
         const { userId } = getAuth(request)
 
-        const inSeller = authSeller(userId)
+        const isSeller = authSeller(userId)
         if (!isSeller) {
             return NextResponse.json({ success: false, message: 'not authorized' });
 
