@@ -20,7 +20,7 @@ const ProductList = () => {
 
        const token = await getToken()
 
-       const { data } = await axios.get('/api/product/selller-list',{Authorization: `Bearer ${token}`})
+       const { data } = await axios.get('/api/product/seller-list',{Authorization: `Bearer ${token}`})
 
        if (data.success){
         setProducts(data.products)
