@@ -28,7 +28,7 @@ export const AppContextProvider = (props) => {
     const fetchProductData = async () => {
        try {
          const {data} = await axios.get('/api/product/list')
-         if (data.sucess){
+         if (data.success){
             setProducts(data.products)
          } else {
             toast.error(data.message)
