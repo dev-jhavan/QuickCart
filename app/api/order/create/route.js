@@ -1,20 +1,24 @@
 import { inngest } from "@/config/inngest";
 import { getAuth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
+import User from "@/models/User"; // ajuste o caminho se necessário
+import Product from "@/models/Product"; // ajuste o caminho se necessário
+import Order from "@/models/Order"; 
 
 export async function POST(request) {
     try {
-        const { userId } = getAuth(request)
+        const { userId } = getAuth(request);
         const { address, items } = await request.json();
 
-        if (!address || items.lenght === 0) {
-            return NextResponse.json({ success: false, message: 'Invalide data' })
+        if (!address || items.length === 0) {
+            return NextResponse.json({ success: false, message: 'Invalid data' });
         }
 
-        const amount = await items.reduce(async (acc, item) => {
-            const product = await Product.findById(item.product);
-            return acc + product.offerPrice * item.quantity;
-        }, 0)
+        const amount = await items.reduce(async (accPromise, item) => {
+            const acc = await accPromise;
+            const foundProduct = await Product.findById(item.product);
+            return acc + foundProduct.offerPrice * item.quantity;
+        }, Promise.resolve(0));
 
         await inngest.send({
             name: 'order/created',
@@ -25,17 +29,15 @@ export async function POST(request) {
                 amount: amount + Math.floor(amount * 0.02),
                 date: Date.now()
             }
-        })
-        const user = await User.findById(userId)
-        user.cartItems = {}
-        await user.save()
+        });
 
-        return NextResponse.json({ success: true, message: 'Order Placed' })
+        const user = await User.findById(userId);
+        user.cartItems = {};
+        await user.save();
 
-
-
+        return NextResponse.json({ success: true, message: 'Order Placed' });
     } catch (error) {
-        console.log(error)
-        return NextResponse.json({ success: false, message: error.message })
+        console.log(error);
+        return NextResponse.json({ success: false, message: error.message });
     }
 }
