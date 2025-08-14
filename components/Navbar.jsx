@@ -46,7 +46,7 @@ const Navbar = () => {
             <UserButton.Action label="Home" labelIcon={<HomeIcon></HomeIcon> } onClick={()=> router.push('/')}></UserButton.Action>
             <UserButton.Action label="Products" labelIcon={<BoxIcon></BoxIcon>} onClick={()=> router.push('/all-products')}></UserButton.Action>
             <UserButton.Action label="Cart" labelIcon={<CartIcon></CartIcon> } onClick={()=> router.push('/cart')}></UserButton.Action>
-            <UserButton.Action label="Bag" labelIcon={<BagIcon></BagIcon> } onClick={()=> router.push('/my-orders')}></UserButton.Action>
+            <UserButton.Action label="Orders" labelIcon={<BagIcon></BagIcon> } onClick={()=> router.push('/my-orders')}></UserButton.Action>
           </UserButton.MenuItems>
          </UserButton>
 
@@ -67,7 +67,7 @@ const Navbar = () => {
             <UserButton.Action label="Home" labelIcon={<HomeIcon></HomeIcon> } onClick={()=> router.push('/')}></UserButton.Action>
             <UserButton.Action label="Products" labelIcon={<BoxIcon></BoxIcon>} onClick={()=> router.push('/all-products')}></UserButton.Action>
             <UserButton.Action label="Cart" labelIcon={<CartIcon></CartIcon> } onClick={()=> router.push('/cart')}></UserButton.Action>
-            <UserButton.Action label="Bag" labelIcon={<BagIcon></BagIcon> } onClick={()=> router.push('/my-orders')}></UserButton.Action>
+            <UserButton.Action label="Orders" labelIcon={<BagIcon></BagIcon> } onClick={()=> router.push('/my-orders')}></UserButton.Action>
           </UserButton.MenuItems>
          </UserButton>
 

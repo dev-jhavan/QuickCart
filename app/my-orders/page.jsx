@@ -6,16 +6,30 @@ import { useAppContext } from "@/context/AppContext";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import Loading from "@/components/Loading";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 const MyOrders = () => {
 
-    const { currency } = useAppContext();
+    const { currency , getToken} = useAppContext();
 
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(true);
 
     const fetchOrders = async () => {
-        setOrders(orderDummyData)
+        try {
+            
+            const token = await getToken()
+            const {data} = await axios.get('/api/order/list', {headers:{Authorization:`Bearer ${token}`}})
+            if (data.success){
+                setOrders(data.orders.reverse())
+                setLoading(false)
+            } else{
+                toast.error(data.message)
+            }
+        } catch (error) {
+             toast.error(error.message)
+        }
         setLoading(false);
     }
 
@@ -51,7 +65,7 @@ const MyOrders = () => {
                                         <br />
                                         <span >{order.address.area}</span>
                                         <br />
-                                        <span>{`${order.address.city}, ${order.address.state}`}</span>
+                                        <span>{`${order.address.city}`}</span>
                                         <br />
                                         <span>{order.address.phoneNumber}</span>
                                     </p>

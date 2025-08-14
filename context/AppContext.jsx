@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useAuth, useUser } from "@clerk/nextjs";
 import { createContext, useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import axios from "axios"; // Adicione se ainda não estiver importando
+import axios from "axios"; 
 
 export const AppContext = createContext();
 
@@ -53,11 +53,11 @@ export const AppContextProvider = (props) => {
                 setUserData(data.user)
                 setCartItems(data.user.cartItems)
             } else {
-                toast.error(data.message)
+                //toast.error(data.message)
             }
 
         } catch (error) {
-            toast.error(error.message)
+           toast.error(error.message)
         }
     }
 
